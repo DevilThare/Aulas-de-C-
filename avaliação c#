@@ -1,0 +1,69 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.4
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netuno_e_sereias", "Netuno_e_sereias\Netuno_e_sereias.csproj", "{6787D85D-6533-480E-A469-DFB18B8D1638}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6787D85D-6533-480E-A469-DFB18B8D1638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6787D85D-6533-480E-A469-DFB18B8D1638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6787D85D-6533-480E-A469-DFB18B8D1638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6787D85D-6533-480E-A469-DFB18B8D1638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal
+
+
+void Button1Click(object sender, EventArgs e)
+		{
+			
+			// 1. Obtendo dados com segurança
+			int altura = int.Parse(textBox1.Text); 
+			int	comprimento = int.Parse(textBox2.Text);
+			int largura = int.Parse(textBox3.Text);
+
+
+			int volume = altura * largura * comprimento;
+			double taxaBase = 57.99;
+			double porcentagemAdicional = 0;
+			double taxaFixa = 0;
+
+			// 2. Logica do IF
+			if (volume > 250) {
+    			porcentagemAdicional = 0.60;
+    			taxaFixa = 450;
+			} 
+			else if (volume > 100) {
+   				porcentagemAdicional = 0.40;
+    			taxaFixa = 0;
+			} 
+			else if (volume > 50) {
+    			porcentagemAdicional = 0.20;
+    			taxaFixa = 0;
+			}
+			else {
+			    porcentagemAdicional = 0;
+			    taxaFixa = 0;
+			}
+
+			// 3. Cálculos Centralizados
+			double valorBase = (volume * taxaBase) + taxaFixa;
+			double valorAdicional = valorBase * porcentagemAdicional;
+			double imposto = (valorBase + valorAdicional) * 0.22;
+			double valorSemImposto = valorBase + valorAdicional;
+			double valorTotal = valorSemImposto + imposto;
+			
+			// 4. Exibição dos dados
+			label4.Text = "Valor Base: " + valorBase.ToString("C");
+			label5.Text = "Adicional: " + valorAdicional.ToString("C");
+			label6.Text = "Taxa Fixa: " + taxaFixa.ToString("C");
+			label7.Text = "Subtotal (sem imposto): " + valorSemImposto.ToString("C");
+			label8.Text = "Imposto (22%): " + imposto.ToString("C");
+			label9.Text = "Valor Total: " + valorTotal.ToString("C");
+			textBox4.Text = volume.ToString();
+			}
+		
